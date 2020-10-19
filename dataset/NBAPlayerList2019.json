@@ -1,0 +1,145 @@
+{
+	"name": "NBAPlayerList2019",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "absNBAPlayersList",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "NBA_Player_Stats_Total.csv",
+				"folderPath": "NBAPlayerList/2019",
+				"container": "adfdatalake"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Rk",
+				"type": "String"
+			},
+			{
+				"name": "Player",
+				"type": "String"
+			},
+			{
+				"name": "Pos",
+				"type": "String"
+			},
+			{
+				"name": "Age",
+				"type": "String"
+			},
+			{
+				"name": "Tm",
+				"type": "String"
+			},
+			{
+				"name": "G",
+				"type": "String"
+			},
+			{
+				"name": "GS",
+				"type": "String"
+			},
+			{
+				"name": "MP",
+				"type": "String"
+			},
+			{
+				"name": "FG",
+				"type": "String"
+			},
+			{
+				"name": "FGA",
+				"type": "String"
+			},
+			{
+				"name": "FG%",
+				"type": "String"
+			},
+			{
+				"name": "3P",
+				"type": "String"
+			},
+			{
+				"name": "3PA",
+				"type": "String"
+			},
+			{
+				"name": "3P%",
+				"type": "String"
+			},
+			{
+				"name": "2P",
+				"type": "String"
+			},
+			{
+				"name": "2PA",
+				"type": "String"
+			},
+			{
+				"name": "2P%",
+				"type": "String"
+			},
+			{
+				"name": "eFG%",
+				"type": "String"
+			},
+			{
+				"name": "FT",
+				"type": "String"
+			},
+			{
+				"name": "FTA",
+				"type": "String"
+			},
+			{
+				"name": "FT%",
+				"type": "String"
+			},
+			{
+				"name": "ORB",
+				"type": "String"
+			},
+			{
+				"name": "DRB",
+				"type": "String"
+			},
+			{
+				"name": "TRB",
+				"type": "String"
+			},
+			{
+				"name": "AST",
+				"type": "String"
+			},
+			{
+				"name": "STL",
+				"type": "String"
+			},
+			{
+				"name": "BLK",
+				"type": "String"
+			},
+			{
+				"name": "TOV",
+				"type": "String"
+			},
+			{
+				"name": "PF",
+				"type": "String"
+			},
+			{
+				"name": "PTS",
+				"type": "String"
+			}
+		]
+	}
+}

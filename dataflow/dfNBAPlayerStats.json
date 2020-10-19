@@ -1,0 +1,20 @@
+{
+	"name": "dfNBAPlayerStats",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "NBAPlayerList2019",
+						"type": "DatasetReference"
+					},
+					"name": "NBAPlayerStats"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "source(output(\n\t\tRk as string,\n\t\tPlayer as string,\n\t\tPos as string,\n\t\tAge as string,\n\t\tTm as string,\n\t\tG as string,\n\t\tGS as string,\n\t\tMP as string,\n\t\tFG as string,\n\t\tFGA as string,\n\t\t{FG%} as string,\n\t\t{3P} as string,\n\t\t{3PA} as string,\n\t\t{3P%} as string,\n\t\t{2P} as string,\n\t\t{2PA} as string,\n\t\t{2P%} as string,\n\t\t{eFG%} as string,\n\t\tFT as string,\n\t\tFTA as string,\n\t\t{FT%} as string,\n\t\tORB as string,\n\t\tDRB as string,\n\t\tTRB as string,\n\t\tAST as string,\n\t\tSTL as string,\n\t\tBLK as string,\n\t\tTOV as string,\n\t\tPF as string,\n\t\tPTS as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: true,\n\tignoreNoFilesFound: false,\n\tinferDriftedColumnTypes: true) ~> NBAPlayerStats"
+		}
+	}
+}
