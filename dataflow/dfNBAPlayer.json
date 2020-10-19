@@ -1,0 +1,27 @@
+{
+	"name": "dfNBAPlayer",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "NBAPlayerList2019",
+						"type": "DatasetReference"
+					},
+					"name": "NBAPlayerStats"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "GetBasketBallData"
+				},
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(output(\n\t\tRk as short,\n\t\tPlayer as string,\n\t\tPos as string,\n\t\tAge as short,\n\t\tTm as string,\n\t\tG as short,\n\t\tGS as short,\n\t\tMP as double,\n\t\tFG as double,\n\t\tFGA as double,\n\t\t{FG%} as double,\n\t\t{3P} as double,\n\t\t{3PA} as double,\n\t\t{3P%} as double,\n\t\t{2P} as double,\n\t\t{2PA} as double,\n\t\t{2P%} as double,\n\t\t{eFG%} as double,\n\t\tFT as double,\n\t\tFTA as double,\n\t\t{FT%} as double,\n\t\tORB as double,\n\t\tDRB as double,\n\t\tTRB as double,\n\t\tAST as double,\n\t\tSTL as double,\n\t\tBLK as double,\n\t\tTOV as double,\n\t\tPF as double,\n\t\tPTS as integer '##0'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tinferDriftedColumnTypes: true) ~> NBAPlayerStats\nNBAPlayerStats derive(PlayerName = :name,\n\t\tdescribeAPlayer = \"{:name} is a {:playerRating} player\",\n\t\teach(match(type == \"double\"), $$ = round($$, 0)),\n\t\tname := split(Player, '\\\\')[1],\n\t\tplayerRating := case(PTS < 10, 'bad', and(PTS < 20, PTS >= 10), 'good', PTS >= 20, 'great')) ~> GetBasketBallData\nGetBasketBallData select(mapColumn(\n\t\teach(match(origin == 'GetBasketBallData'),\n\t\t\tupper($$) = $$)\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1"
+		}
+	}
+}
