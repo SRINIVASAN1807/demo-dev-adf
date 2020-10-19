@@ -173,7 +173,7 @@
 		],
 		"typeProperties": {
 			"schema": "ADFDATA",
-			"table": "NBAPLAYERSTATS"
+			"table": "NBAPLAYERS"
 		}
 	}
 }
